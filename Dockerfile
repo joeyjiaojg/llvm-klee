@@ -17,9 +17,7 @@ RUN pip install wllvm
 # Install klee
 COPY setup_klee.sh /local/mnt/workspace
 RUN bash setup_klee.sh
-RUN rm -rf klee && rm -rf setup_klee.sh
 
 # Install llvm-klee
 RUN git clone https://github.com/joeyjiaojg/llvm-project -b llvmklee
 RUN cd llvm-project && mkdir build && cd build && cmake -G Ninja -DCMAKE_BUILD_TYPE=DEBUG ../llvm && ninja -j$(nproc) llvm-klee && ninja tools/llvm-klee/install
-RUN rm -rf llvm-project

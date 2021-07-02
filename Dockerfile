@@ -1,10 +1,11 @@
 FROM debian:buster
 
-WORKDIR /home/
+WORKDIR /local/mnt/workspace
+VOLUME /local/mnt/workspace
 
 # Install basic packages
 RUN apt-get update
-RUN apt-get install -y git apt-utils build-essential wget curl vim lsb-release cmake ninja-build software-properties-common sudo
+RUN apt-get install -y git apt-utils build-essential wget curl vim lsb-release ninja-build software-properties-common sudo
 
 # Install python
 RUN apt-get install -y python3 python3-distutils python3-dev
@@ -14,7 +15,7 @@ RUN wget https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py && rm get-pi
 RUN pip install wllvm
 
 # Install klee
-COPY setup_klee.sh /home
+COPY setup_klee.sh /local/mnt/workspace
 RUN bash setup_klee.sh
 RUN rm -rf klee && rm -rf setup_klee.sh
 

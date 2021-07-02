@@ -24,11 +24,10 @@ pip install lit tabulate wllvm
 cd $WS
 if [ ! -d cmake-3.20.5-linux-x86_64 ]; then
 wget https://github.com/Kitware/CMake/releases/download/v3.20.5/cmake-3.20.5-linux-x86_64.tar.gz
-tar -xf cmake-3.20.5-linux-x86_64.tar.gz
-cd cmake-3.20.5-linux-x86_64
-echo "export PATH=$(pwd)/bin:\$PATH" >> ~/.bashrc
+tar -C /usr/local/ -xf cmake-3.20.5-linux-x86_64.tar.gz
+echo "export PATH=/usr/local/cmake-3.20.5-linux-x86_64/bin:\$PATH" >> ~/.bashrc
 fi
-export PATH=$(pwd)/bin:$PATH
+export PATH=/usr/local/cmake-3.20.5-linux-x86_64/bin:$PATH
 
 # Install llvm
 #sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
